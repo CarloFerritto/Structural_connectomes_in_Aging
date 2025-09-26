@@ -1,6 +1,6 @@
 (This is the template README.md for this template project sharing repository; please see [HOWTO.md](HOWTO.md) for usage guidelines for this repo.)
 
-# Project/Paper Title
+# Structural connectoms in Aging (Ferritto et al.)
 
 <Project description>
   
