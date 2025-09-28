@@ -18,7 +18,7 @@
 See [CITATION](CITATION).
 
 # Contents overview
-In this repository you can find instructions and scripts to reproduce our results. \\
+In this repository you can find instructions and scripts to reproduce our results. <br>
 There's no mean to reproduce the exact same results, as we can't provide the subject ID's and visits used in this study.
 Nevertheless, we provide specific instruction on how to select the set of subjects.
 
