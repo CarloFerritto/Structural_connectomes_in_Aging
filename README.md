@@ -18,8 +18,21 @@
 See [CITATION](CITATION).
 
 # Contents overview
+In this repository you can find instructions and script to reproduce our results.
+There's no mean to reproduce the exact same results, as we can't provide the subject ID's and visits used in this study.
+Nevertheless, we provide specific instruction on how to select the set of subjects.
 
-<Summarise what's in this repository>
+
+
+## Reproducing full analysis
+### Building your Dataset 
+In this section we provide istruction on how to build your dataset. Imagies can be download (after applying to the ADNI study), [here](https://ida.loni.usc.edu/login.jsp).
+
+
+<Instructions on how to (1) obtain raw data; (2) process it to create summary/derived data in the `results`>
+
+
+<Specify precise steps, including any datasets that need to be downloaded and path variables that need to be set>
 
 ## Reproducing figures and tables
 
@@ -32,10 +45,3 @@ See [CITATION](CITATION).
 ### Fig. 1
 
 ### Fig. 2
-
-## Reproducing full analysis
-
-<Instructions on how to (1) obtain raw data; (2) process it to create summary/derived data in the `results`>
-
-<Specify precise steps, including any datasets that need to be downloaded and path variables that need to be set>
-
