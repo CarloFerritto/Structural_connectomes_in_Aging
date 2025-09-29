@@ -66,6 +66,7 @@ Once you download the images, one should:
          |   -- sub-003_echo-2_part-mag.nii.gz
          |   -- sub-003_echo-2_part-mag.json
 
+
 ### Preprocess your images 
 To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment.<br>
 One should have:
