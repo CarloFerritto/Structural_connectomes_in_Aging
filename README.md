@@ -44,6 +44,7 @@ Images can be download  [here](https://ida.loni.usc.edu).<br>
 Once you download the images, one should:
 - convert the images in Nifti format ( we suggest to use the [heudiconv tool](https://github.com/nipy/heudiconv) with the heuristic.py script and change_files_name.py)
 - organize the folder as follow
+
    .
 	|-- Nifti
 	|   -- sub-001
