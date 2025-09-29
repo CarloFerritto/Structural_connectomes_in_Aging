@@ -68,33 +68,35 @@ Once you download the images, one should:
 ```
 
 ### Preprocess your images 
-To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment.<br>
+To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment. Be sure to download the MIITRA and <br>
 One should have:
 - one folder containing the templates
-   .
-   |-- TEMPLATE
-	|   -- [MIITRA](https://www.nitrc.org/frs/?group_id=1407)
-      |   -- MIITRA_T1_1mm.nii.gz
-      |   -- MIITRA_T1_1mm_brain.nii.gz
-      |   -- MIITRA_mask.nii.gz
-      |   -- MIITRA_gm.nii.gz
-      |   -- MIITRA_wm.nii.gz
-      |   -- MIITRA_mask.nii.gz
-	|   -- [MNI152NLin2009cAsym](https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)
-      |   -- MNI152NLin2009cAsym_T1_1mm.nii.gz
-      |   -- MNI152NLin2009cAsym_T1_1mm_brain.nii.gz
-      |   -- MNI152NLin2009cAsym_mask.nii.gz
-      |   -- MNI152NLin2009cAsym_gm.nii.gz
-      |   -- MNI152NLin2009cAsym_wm.nii.gz
-      |   -- MNI152NLin2009cAsym_mask.nii.gz	
+```text
+.
+└─ TEMPLATE/
+   ├─ MIITRA/                       (https://www.nitrc.org/frs/?group_id=1407)
+   │  ├─ MIITRA_T1_1mm.nii.gz
+   │  ├─ MIITRA_T1_1mm_brain.nii.gz
+   │  ├─ MIITRA_mask.nii.gz
+   │  ├─ MIITRA_gm.nii.gz
+   │  └─ MIITRA_wm.nii.gz
+   └─ MNI152NLin2009cAsym/          (https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)
+      ├─ MNI152NLin2009cAsym_T1_1mm.nii.gz
+      ├─ MNI152NLin2009cAsym_T1_1mm_brain.nii.gz
+      ├─ MNI152NLin2009cAsym_mask.nii.gz
+      ├─ MNI152NLin2009cAsym_gm.nii.gz
+      └─ MNI152NLin2009cAsym_wm.nii.gz
+```
 -one folder containing the parcellation
-   . 
-   |-- PARCELLATION
-	|   -- Schaefer
-      |   -- [Cortex-Subcortex](https://github.com/yetianmed/subcortex)
-         |   -- Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152NLin2009cAsym_1mm.nii.gz
-         |   -- Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152_label.txt
+```text
 
+.
+└─ PARCELLATION/
+   ├─ Schaefer/
+   └─ Cortex-Subcortex/             (https://github.com/yetianmed/subcortex)
+      ├─ Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152NLin2009cAsym_1mm.nii.gz
+      └─ Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152_label.txt
+```
 
 
 
