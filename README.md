@@ -42,8 +42,8 @@ To reduce the dataset to 50 patients, one can use the script patients_selection.
 ### Images Download and organization
 Images can be download  [here](https://ida.loni.usc.edu).<br>
 Once you download the images, one should:
-- convert the images in Nifti format ( we suggest to use the [heudiconv tool](https://github.com/nipy/heudiconv) with the heuristic.py script and change_files_name.py)
-- organize the folder as follow
+ * convert the images in Nifti format ( we suggest to use the [heudiconv tool](https://github.com/nipy/heudiconv) with the heuristic.py script and change_files_name.py)
+ * organize the folder as follow <br>
 
    .
 	|-- Nifti
