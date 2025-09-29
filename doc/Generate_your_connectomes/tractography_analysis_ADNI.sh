@@ -1,59 +1,28 @@
 #!/bin/bash
-Machine="grid"
-if [ "$Machine" == "calcarine" ]
-then 
-    #import Anima bins and scripts
-    export PATH=$PATH:/home/cferritt/.anima/Anima-Binaries-4.2/
-    export PATH=$PATH:/home/cferritt/.anima/Anima-Scripts-Public/
-    Anima_dir="/home/cferritt/.anima/"
-    #import FSL bins
-    FSLDIR=/usr/local/fsl
-    . ${FSLDIR}/etc/fslconf/fsl.sh
-    PATH=${FSLDIR}/bin:${PATH}
-    export FSLDIR PATH
-    #import MRTRIX bins
-    MRTXDIR=/usr/local/mrtrix3
-    . ${MRTXDIR}/configure
-    PATH=${MRTXDIR}/bin:${PATH}
-    export MRTXDIR PATH
-    ## activate env for ants
-    source activate base
-    conda activate snow-flakes
-    Dataset="ADNI3"
-    Parcellation_dir="/home/cferritt/NAS-EMPENN/share/users/cferritt/DATASET/PARCELLATION/"
-    Template_dir="/home/cferritt/NAS-EMPENN/share/users/cferritt/DATASET/TEMPLATE/"
-    DATASET_dir="/home/cferritt/NAS-EMPENN/share/users/cferritt/DATASET/"${Dataset}"/Nifti_done/"
-elif [ "$Machine" == "grid" ]
-then 
-    #import Anima bins and scripts
-    export PATH=$PATH:/home/cferritto/.anima/Anima-Binaries-4.2/
-    export PATH=$PATH:/home/cferritto/.anima/Anima-Scripts-Public/
-    Anima_dir="/home/cferritto/.anima/"
-    #import ANTS bins
-    export ANTSPATH=/home/cferritto/empenn_group_storage/private/cferritto/Softwares/ANTS/install/bin/
-    export PATH=${ANTSPATH}:$PATH
-    #import FSL bins
-    FSLDIR=/home/cferritto/empenn_group_storage/private/cferritto/Softwares/fsl
-    . ${FSLDIR}/etc/fslconf/fsl.sh
-    PATH=${FSLDIR}/bin:${PATH}
-    export FSLDIR PATH
-    ## activate env for mrtrix
+Anima_dir=/path_to_anima_folder/.anima/
+export PATH=$PATH:/${Anima_dir}/Anima-Binaries-4.2/
+export PATH=$PATH:/${Anima_dir}/Anima-Scripts-Public/
 
-    module load conda
-    conda activate snow-flakes
-    Dataset="ADNI"
-    Parcellation_dir="/home/cferritto/empenn_group_storage/private/cferritto/TEST/PARCELLATION/"
-    Template_dir="/home/cferritto/empenn_group_storage/private/cferritto/TEST/TEMPLATE/"
-    DATASET_dir="/home/cferritto/empenn_group_storage/private/cferritto/TEST/DATASET/"${Dataset}"/Nifti/"         
-fi
+#import ANTS bins
+ANTS_dir=/path_to_ANTS_folder/ANTS
+export ANTSPATH=${ANTS_dir}/install/bin/
+export PATH=${ANTSPATH}:$PATH
+#import FSL bins
+FSL_dir=/path_to_fsl_folder/fsl
+. ${FSL_dir}/etc/fslconf/fsl.sh
+PATH=${FSL_dir}/bin:${PATH}
+export FSL_dir PATH
+## activate env for mrtrix
+module load conda
+conda activate environment_preprocessing_and_metrics
 
-Patients=('sub-941S6080' 'sub-941S6254' 'sub-941S6333' 'sub-941S6454' 'sub-941S6471' 'sub-941S6495' 'sub-941S6499' 'sub-941S6570' 'sub-941S6575' 'sub-941S6580')
-#Scaricati 'sub-002S0413' 'sub-002S1280' 'sub-002S6009' 'sub-002S6053' 'sub-002S4213' 'sub-002S6066' 'sub-007S4488' 'sub-002S5178' 'sub-002S6007' 'sub-003S4288' 'sub-007S4387' 'sub-007S4620' 'sub-007S4637' 'sub-007S6120' 'sub-007S6323' 'sub-007S6455' 'sub-023S0031' 'sub-037S6956' 'sub-023S4164' 'sub-007S6515' 'sub-023S6346'
-#Scaricati 'sub-052S6412' 'sub-022S6069' 'sub-023S6399' 'sub-007S6521' 'sub-067S6045' 'sub-022S6797' 'sub-024S6005' 'sub-024S6385' 'sub-941S6080' 'sub-067S6117' 'sub-941S6254' 'sub-024S6472' 'sub-941S6333' 'sub-037S4028'
-#Scaricati 'sub-037S6031' 'sub-941S6454' 'sub-941S6471' 'sub-067S6138' 'sub-067S6442' 'sub-037S6204' 'sub-941S6495' 'sub-941S6499' 'sub-941S6570' 'sub-067S6957' 'sub-073S4393' 'sub-941S6575' 'sub-941S6580' 'sub-941S1195'
-#da scaricare  
-#'sub-941S4292'
 
+Parcellation_dir="/path_to_parcellation_folder/PARCELLATION/"
+Template_dir="/path_to_template_folder/TEMPLATE/"
+DATASET_dir="/path_to_dataset_folder/Nifti/"
+
+
+Patients=("sub-001" "sub-002" "sub-003")
 
 for Patient in "${Patients[@]}" 
 do

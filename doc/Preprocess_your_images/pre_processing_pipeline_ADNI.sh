@@ -1,24 +1,25 @@
 #!/bin/bash
+Anima_dir=/path_to_anima_folder/.anima/
+export PATH=$PATH:/${Anima_dir}/Anima-Binaries-4.2/
+export PATH=$PATH:/${Anima_dir}/Anima-Scripts-Public/
 
-export PATH=$PATH:/path_to_anima_folder/.anima/Anima-Binaries-4.2/
-export PATH=$PATH:/path_to_anima_folder/.anima/Anima-Scripts-Public/
-Anima_dir="/path_to_anima_folder/.anima/"
 #import ANTS bins
-export ANTSPATH=/home/cferritto/empenn_group_storage/private/cferritto/Softwares/ANTS/install/bin/
+ANTS_dir=/path_to_ANTS_folder/ANTS
+export ANTSPATH=${ANTS_dir}/install/bin/
 export PATH=${ANTSPATH}:$PATH
 #import FSL bins
-FSLDIR=/home/cferritto/empenn_group_storage/private/cferritto/Softwares/fsl
-. ${FSLDIR}/etc/fslconf/fsl.sh
-PATH=${FSLDIR}/bin:${PATH}
-export FSLDIR PATH
+FSL_dir=/path_to_fsl_folder/fsl
+. ${FSL_dir}/etc/fslconf/fsl.sh
+PATH=${FSL_dir}/bin:${PATH}
+export FSL_dir PATH
 ## activate env for mrtrix
-
 module load conda
-conda activate snow-flakes
-Dataset="ADNI"
-Parcellation_dir="/home/cferritto/empenn_group_storage/private/cferritto/TEST/PARCELLATION/"
-Template_dir="/home/cferritto/empenn_group_storage/private/cferritto/TEST/TEMPLATE/"
-DATASET_dir="/home/cferritto/empenn_group_storage/private/cferritto/TEST/DATASET/"${Dataset}"/Nifti/"         
+conda activate environment_preprocessing_and_metrics
+
+
+Parcellation_dir="/path_to_parcellation_folder/PARCELLATION/"
+Template_dir="/path_to_template_folder/TEMPLATE/"
+DATASET_dir="/path_to_dataset_folder/Nifti/"
 
 
 Patients=("sub-001" "sub-002" "sub-003")
@@ -163,6 +164,7 @@ do
 
     #extracting number of volumes
     nvol=$(fslnvols ${dwi_file}_reorient.nii.gz)
+    
     #dummy index file (direction is always PA) for eddy
     index=""
     for ((j=1; j<=nvol; j+=1)); do index="$index 1"; done
@@ -284,12 +286,9 @@ do
         dwiextract -force -bzero -fslgrad ${dwi_file}_real.bvec ${dwi_file}.bval ${dwi_eddy}.nii.gz ${B0_file}_eddy.nii.gz
         fslroi ${B0_file}_eddy.nii.gz ${B0_file}_eddy_first.nii.gz 0 1
         animaConvertImage -i ${B0_file}_eddy_first.nii.gz  -o ${B0_file}_eddy_first.nrrd
-        #animaConvertImage -i ${dwi_mask}.nii.gz  -o ${dwi_mask}.nrrd
         animaConvertImage -i ${Patient}_T1toDWI.nii.gz  -o ${Patient}_T1toDWI.nrrd
         animaConvertImage -i ${dwi_eddy}.nii.gz -o ${dwi_eddy}.nrrd
 
-        #animaMorphologicalOperations -i ${dwi_mask}.nrrd -a dil -r 4 -o ${dwi_mask}_dil.nrrd
-        #animaMaskImage -i ${B0_file}_eddy_first.nrrd -o ${B0_file}_eddy_first_masked.nrrd -m ${dwi_mask}_dil.nrrd
         if [[ "$phase_encoding_dwi" == *"i"* ]]
         then
             echo "direzione x"
@@ -304,9 +303,9 @@ do
             animaDenseSVFBMRegistration -r ${Patient}_T1toDWI.nrrd -m ${B0_file}_eddy_first.nrrd -o ${B0_file}_eddy_first_corrected.nrrd -d 2 -O ${B0_file}_correction_tr.nrrd -t 3 --sym-reg 2
         fi
         animaApplyDistortionCorrection -f ${dwi_eddy}.nrrd -t ${B0_file}_correction_tr.nrrd -o ${dwi_eddy}_undistorted.nii.gz
-        #animaConvertImage -i ${dwi_eddy}_undistorted.nrrd -o ${dwi_eddy}_undistorted.nii.gz
+
         rm ${dwi_eddy}.nrrd
-        #rm ${dwi_eddy}_undistorted.nrrd
+
     else  
         exit  "$Manufacturer is not a Reliable Manufacturer, please change your scanner! It really s***s mate"
     fi 
@@ -385,14 +384,8 @@ do
     
     echo " "
     echo " => Converting bvec file mrtrix space coordinates "
-        if [ "$Machine" == "calcarine" ]
-    then 
-        python3 /home/cferritt/NAS-EMPENN/share/users/cferritt/flip_bvec.py -i ${dwi_file}.bvec -d 0 -o ${dwi_file}_mrtrix.bvec
-    elif [ "$Machine" == "grid" ]
-    then
-        python3 /home/cferritto/Scripts/Preprocessing/diffusion/Tractography/flip_bvec.py -i ${dwi_file}.bvec -d 0 -o ${dwi_file}_mrtrix.bvec
-    fi
-    
+    python3 flip_bvec.py -i ${dwi_file}.bvec -d 0 -o ${dwi_file}_mrtrix.bvec
+
     echo " "
     echo " => Response function "
     dwi2response dhollander ${dwi_file}.nii.gz  ${dwi_file}_out_wm ${dwi_file}_out_gm ${dwi_file}_out_csf -fslgrad ${dwi_file}_mrtrix.bvec ${dwi_file}.bval -force 

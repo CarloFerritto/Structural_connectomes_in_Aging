@@ -42,7 +42,7 @@ To reduce the dataset to 50 patients, one can use the script patients_selection.
 ### Images Download and organization
 Images can be download  [here](https://ida.loni.usc.edu).<br>
 Once you download the images, one should:
- * convert the images in Nifti format ( we suggest to use the [heudiconv tool](https://github.com/nipy/heudiconv) with the heuristic.py script and change_files_name.py)
+ * convert the images in Nifti format ( we suggest to use the [heudiconv tool](https://github.com/nipy/heudiconv) with the heuristic.py script and use the change_files_name.py script to change images string)
  * organize the folder as follow 
 ```text
 .
@@ -68,9 +68,9 @@ Once you download the images, one should:
 ```
 
 ### Preprocess your images 
-To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment. Be sure to download the [MIITRA] (https://www.nitrc.org/frs/?group_id=1407)and [MNI152NLin2009cAsym](https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009) templates, and the [400 SChaefer+ S1 Tian](https://github.com/yetianmed/subcortex) parcellation.<br>
+To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment. Be sure to download the [MIITRA](https://www.nitrc.org/frs/?group_id=1407) and [MNI152NLin2009cAsym](https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009) templates, and the [400 Schaefer+ S1 Tian](https://github.com/yetianmed/subcortex) parcellation.<br>
 One should have:
-- one folder containing the templates
+ * one folder containing the templates
 ```text
 .
 └─ TEMPLATE/
@@ -87,7 +87,7 @@ One should have:
       ├─ MNI152NLin2009cAsym_gm.nii.gz
       └─ MNI152NLin2009cAsym_wm.nii.gz
 ```
--one folder containing the parcellation
+ * one folder containing the parcellation
 ```text
 
 .
@@ -98,21 +98,18 @@ One should have:
       └─ Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152_label.txt
 ```
 
+To run the preprocessing use the pre_processing_pipeline_ADNI.sh script (be sure to have the metadata_handler_dwi.py and flip_bvec.py script in tha same folder).
+
+
+### Generete your connectomes 
+To run the preprocessing use the tractography_analysis_ADNI.sh script.
+
+
+### Analyze you connectome
+To compute the global and nodal connectome metrics use the extract_connectome_metrics.py script and the environment_preprocessing_and_metrics.yaml environment. <br>
+To reproduce the analysis, figure and tables use the results_plot.ipynb script and the analysis.yaml environment.
 
 
 
 
 
-
-
-## Reproducing figures and tables
-
-<Instructions on how to use summary/derived data in the `results` directory to create figures and tables>
-
-<Specify precise steps, including any datasets that need to be downloaded and path variables that need to be set>
-
-### Table 1
-
-### Fig. 1
-
-### Fig. 2
