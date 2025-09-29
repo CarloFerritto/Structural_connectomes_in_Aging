@@ -42,8 +42,58 @@ To reduce the dataset to 50 patients, one can use the script patients_selection.
 ### Images Download and organization
 Images can be download  [here](https://ida.loni.usc.edu).<br>
 Once you download the images, one should:
-- convert the images in Nifti format 
+- convert the images in Nifti format ( we suggest to use the [heudiconv tool](https://github.com/nipy/heudiconv) with the heuristic.py script and change_files_name.py)
 - organize the folder as follow
+   .
+	|-- Nifti
+	|   -- sub-001
+	|   -- sub-002
+	|   -- sub-003
+   	|   -- anat
+         |   -- sub-003_T1w.nii.gz
+         |   -- sub-003_T1w.json
+      |   -- dwi
+         |   -- sub-003_dwi.nii.gz
+         |   -- sub-003_dwi.bval
+         |   -- sub-003_dwi.bvec
+         |   -- sub-003_dwi.json
+      |   -- fmap
+         |   -- sub-003_phasediff.nii.gz
+         |   -- sub-003_phasediff.json
+         |   -- sub-003_echo-1_part-mag.nii.gz
+         |   -- sub-003_echo-1_part-mag.json
+         |   -- sub-003_echo-2_part-mag.nii.gz
+         |   -- sub-003_echo-2_part-mag.json
+
+### Preprocess your images 
+To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment.<br>
+One should have:
+- one folder containing the templates
+   |-- TEMPLATE
+	|   -- [MIITRA](https://www.nitrc.org/frs/?group_id=1407)
+      |   -- MIITRA_T1_1mm.nii.gz
+      |   -- MIITRA_T1_1mm_brain.nii.gz
+      |   -- MIITRA_mask.nii.gz
+      |   -- MIITRA_gm.nii.gz
+      |   -- MIITRA_wm.nii.gz
+      |   -- MIITRA_mask.nii.gz
+	|   -- [MNI152NLin2009cAsym](https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)
+      |   -- MNI152NLin2009cAsym_T1_1mm.nii.gz
+      |   -- MNI152NLin2009cAsym_T1_1mm_brain.nii.gz
+      |   -- MNI152NLin2009cAsym_mask.nii.gz
+      |   -- MNI152NLin2009cAsym_gm.nii.gz
+      |   -- MNI152NLin2009cAsym_wm.nii.gz
+      |   -- MNI152NLin2009cAsym_mask.nii.gz	
+-one folder containing the parcellation 
+   |-- PARCELLATION
+	|   -- Schaefer
+      |   -- [Cortex-Subcortex](https://github.com/yetianmed/subcortex)
+         |   -- Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152NLin2009cAsym_1mm.nii.gz
+         |   -- Schaefer2018_400Parcels_7Networks_order_Tian_Subcortex_S1_MNI152_label.txt
+
+
+
+
 
 
 
