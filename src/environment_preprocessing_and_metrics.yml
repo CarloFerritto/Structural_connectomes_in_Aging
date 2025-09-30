@@ -1,4 +1,4 @@
-name: snow-flakes
+name: preprocessing_and_metrics
 channels:
   - mrtrix3
   - conda-forge
@@ -214,4 +214,4 @@ dependencies:
   - zstd=1.5.7=hb8e6e7a_2
   - pip:
       - json5==0.12.0
-prefix: /home/cferritto/.conda/envs/snow-flakes
+prefix: /path/to/your/environment/preprocessing_and_metrics

@@ -1,4 +1,4 @@
-name: snowflakes
+name: analysis
 channels:
   - jmcmurray
   - conda-forge
@@ -307,4 +307,4 @@ dependencies:
       - timebudget==0.7.1
       - tqdm==4.66.2
       - trx-python==0.2.9
-prefix: C:\Users\cferritt\AppData\Local\anaconda3\envs\snowflakes
+prefix: /path/to/your/environment/analysis
