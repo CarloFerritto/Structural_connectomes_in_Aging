@@ -66,7 +66,7 @@ Once you download the images, one should:
 ```
 
 ### Preprocess your images 
-To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/),[ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment. Be sure to download the [MIITRA](https://www.nitrc.org/frs/?group_id=1407) and [MNI152NLin2009cAsym](https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009) templates, and the [400 Schaefer+ S1 Tian](https://github.com/yetianmed/subcortex) parcellation.<br>
+To preprocess the images you need to dowload [Anima](https://anima.readthedocs.io/en/latest/), [ANTs](https://github.com/ANTsX/ANTs) 2.6.0.dev1-gb775a15, [FSL](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation.html) 6.0.7.17, and use the environment_preprocessing_and_metrics.yml environment. Be sure to download the [MIITRA](https://www.nitrc.org/frs/?group_id=1407) and [MNI152NLin2009cAsym](https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009) templates, and the [400 Schaefer+ S1 Tian](https://github.com/yetianmed/subcortex) parcellation.<br>
 One should have:
  * one folder containing the templates
 ```text
@@ -89,7 +89,6 @@ One should have:
 ```
  * one folder containing the parcellation
 ```text
-
 .
 └─ PARCELLATION/
    ├─ Schaefer/

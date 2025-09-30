@@ -1,4 +1,7 @@
 #!/bin/bash
+# Pre processing pipeline for T1w and DWI images
+# Requirements: ANTs, FSL, Anima, MRtrix3, Python3 with the environment_preprocessing_and_metrics.yaml environment
+#import Anima bins
 Anima_dir=/path_to_anima_folder/.anima/
 export PATH=$PATH:/${Anima_dir}/Anima-Binaries-4.2/
 export PATH=$PATH:/${Anima_dir}/Anima-Scripts-Public/
@@ -12,7 +15,7 @@ FSL_dir=/path_to_fsl_folder/fsl
 . ${FSL_dir}/etc/fslconf/fsl.sh
 PATH=${FSL_dir}/bin:${PATH}
 export FSL_dir PATH
-## activate env for mrtrix
+## activate python environment
 module load conda
 conda activate environment_preprocessing_and_metrics
 
@@ -165,7 +168,7 @@ do
     #extracting number of volumes
     nvol=$(fslnvols ${dwi_file}_reorient.nii.gz)
     
-    #dummy index file (direction is always PA) for eddy
+    #dummy index file for eddy
     index=""
     for ((j=1; j<=nvol; j+=1)); do index="$index 1"; done
     dwi_txt2=${dwi_file}_index.txt

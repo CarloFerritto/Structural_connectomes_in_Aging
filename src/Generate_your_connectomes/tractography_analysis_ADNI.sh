@@ -1,4 +1,7 @@
 #!/bin/bash
+# The script generetes the structural connectomes using MRtrix3
+# Requirements: ANTs, FSL, Anima, MRtrix3, Python3 with the environment_preprocessing_and_metrics.yaml environment
+#import Anima bins
 Anima_dir=/path_to_anima_folder/.anima/
 export PATH=$PATH:/${Anima_dir}/Anima-Binaries-4.2/
 export PATH=$PATH:/${Anima_dir}/Anima-Scripts-Public/
@@ -62,12 +65,12 @@ do
     antsApplyTransforms -d 3 --float 0 -i $Template_brain_mask2  -r ${T1_subject_brain}.nii.gz -n NearestNeighbor  -t [ ${Patient}_T1to${Template_Space2}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space2}_1InverseWarp.nii.gz  -o ${Patient}_T1w_brainMask_tight_${Template_Space2}.nii.gz 
     fslmaths $T1_subject_brain_mask -mul ${Patient}_T1w_brainMask_tight_${Template_Space2}.nii.gz ${Patient}_T1w_brainMask_tight_${Template_Space2}.nii.gz
 
-    ## registrare i priors MIITRA nel subject space e fare in modo che siano tra 0 e 1
+    ## registering MIITRA priors to subject space and ensuring they are between 0 and 1
     antsApplyTransforms -d 3 --float 0 -i ${T1_Template_dir2}${Template_Space2}_csf.nii.gz  -r ${T1_subject_brain}.nii.gz -n Linear -t [ ${Patient}_T1to${Template_Space2}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space2}_1InverseWarp.nii.gz  -o ${T1_subject_brain}_csf_priors_${Template_Space2}.nii.gz 
     antsApplyTransforms -d 3 --float 0 -i ${T1_Template_dir2}${Template_Space2}_wm.nii.gz  -r ${T1_subject_brain}.nii.gz -n Linear -t [ ${Patient}_T1to${Template_Space2}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space2}_1InverseWarp.nii.gz  -o ${T1_subject_brain}_wm_priors_${Template_Space2}.nii.gz 
     antsApplyTransforms -d 3 --float 0 -i ${T1_Template_dir2}${Template_Space2}_gm.nii.gz  -r ${T1_subject_brain}.nii.gz -n Linear -t [ ${Patient}_T1to${Template_Space2}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space2}_1InverseWarp.nii.gz  -o ${T1_subject_brain}_gm_priors_${Template_Space2}.nii.gz
 
-    ## registrare i priors MNI nel subject space e fare in modo che siano tra 0 e 1
+    ## registering MNI priors to subject space and ensuring they are between 0 and 1
     antsApplyTransforms -d 3 --float 0 -i ${T1_Template_dir}${Template_Space}_csf.nii  -r ${T1_subject_brain}.nii.gz -n Linear -t [ ${Patient}_T1to${Template_Space}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space}_1InverseWarp.nii.gz  -o ${T1_subject_brain}_csf_priors_${Template_Space}.nii.gz 
     antsApplyTransforms -d 3 --float 0 -i ${T1_Template_dir}${Template_Space}_wm.nii  -r ${T1_subject_brain}.nii.gz -n Linear -t [ ${Patient}_T1to${Template_Space}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space}_1InverseWarp.nii.gz  -o ${T1_subject_brain}_wm_priors_${Template_Space}.nii.gz 
     antsApplyTransforms -d 3 --float 0 -i ${T1_Template_dir}${Template_Space}_gm.nii  -r ${T1_subject_brain}.nii.gz -n Linear -t [ ${Patient}_T1to${Template_Space}_0GenericAffine.mat, 1 ] -t ${Patient}_T1to${Template_Space}_1InverseWarp.nii.gz  -o ${T1_subject_brain}_gm_priors_${Template_Space}.nii.gz

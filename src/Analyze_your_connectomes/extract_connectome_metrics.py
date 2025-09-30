@@ -40,7 +40,7 @@ def global_efficiency_weighted(G, weight="weight"):
                     total += 1 / d
                     count += 1
                 except KeyError:
-                    continue  # nessun cammino
+                    continue  
 
     return total / count if count > 0 else 0.0
 
@@ -48,7 +48,7 @@ def compute_local_efficiency_for_node(args):
     node, matrix = args
     G = nx.from_numpy_array(matrix)
     
-    # Inverti i pesi
+    
     inv_weights = {(u, v): 1 / d["weight"] if d["weight"] > 0 else 1e6
                    for u, v, d in G.edges(data=True)}
     nx.set_edge_attributes(G, inv_weights, name="inv_weight")
@@ -115,7 +115,6 @@ def compute_global_metrics(matrix):
 def compute_local_metrics(matrix):
     G = nx.from_numpy_array(matrix)
 
-    # 1. Inverti i pesi (dove richiesto)
     inv_weights = {(u, v): 1 / d["weight"] if d["weight"] > 0 else 1e6
                    for u, v, d in G.edges(data=True)}
     nx.set_edge_attributes(G, inv_weights, name="inv_weight")
@@ -157,7 +156,7 @@ def main():
                     global_metrics = compute_global_metrics(mat)
                     local_metrics = compute_local_metrics(mat)
 
-                    # Aggiungi metadati
+                
                     global_metrics.update({
                         "folder_id": folder_id,
                         "excel_id": id_map[folder_id],
@@ -176,7 +175,7 @@ def main():
                     print(f"Error processing {connectome_file}: {e}")
                     continue
 
-    # Salvataggio
+    # Save results
     df_global = pd.DataFrame(results_global)
     df_local = pd.concat(results_local)
     df_global.to_pickle(os.path.join(SAVE_PATH, "connectome_no_density_metrics_global.pkl"))

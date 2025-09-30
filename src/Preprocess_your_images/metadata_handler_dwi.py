@@ -8,7 +8,7 @@ import json
 parser = argparse.ArgumentParser()
 parser.add_argument('-dir', '--dataset_dir', type=str, required=True, help='Dataset Directory')
 parser.add_argument('-p', '--patient', type=str, required=True, help='patient id string')
-parser.add_argument('-m', '--manufacturer', type=str, required=True, help='Scanner Manufacturer') #hopefully is enough ---> otherwise we have to get the scanner type
+parser.add_argument('-m', '--manufacturer', type=str, required=True, help='Scanner Manufacturer') 
 parser.add_argument('-dd', '--dwell_dwi', type=float, required=True, help='dwell time dwi')
 parser.add_argument('-rotd', '--readout_time_dwi', type=float, required=True, help='REad out time dwi ')
 parser.add_argument('-ped', '--phase_encoding_dwi', type=str, required=True, help='Phase encoding dwi')

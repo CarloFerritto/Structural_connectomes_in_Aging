@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import entropy
 
 # --- PARAMETERS ---
-input_file = "dataset.xlsx"       # File Excel originale
-output_file = "selected_patients.xlsx"  # File Excel di output
+input_file = "dataset.xlsx"       
+output_file = "selected_patients.xlsx"  
 col_wmh = "WMH_WM"
 col_gender = "Sex"
 col_age = "Age"
