@@ -1,19 +1,17 @@
-(This is the template README.md for this template project sharing repository; please see [HOWTO.md](HOWTO.md) for usage guidelines for this repo.)
-
 # Structural connectoms in Aging (Ferritto et al.)
 
-<Project description>
+In this study, we investigated how preprocessing choices shape late life structural connectomics in cognitively healty subjects.<br>
+We held tractography and parcellation constant while varying two upstream factors: the reference template and the tissue segmentation strategy that drives anatomically constrained tractography.
   
 ## Table of contents
    * [How to cite?](#how-to-cite)
    * [Contents overview](#contents-overview)
-   * [Reproducing figures and tables](#reproducing-figures-and-tables)
-      * [Table 1](#table-1)
-      * [Fig. 1](#fig-1)
-      * [Fig. 2](#fig-2)
    * [Reproducing full analysis](#reproducing-full-analysis)
       * [Building your dataset](#building-your-dataset)
       * [Images download and organization](#images-download-and-organization)
+      * [Preprocess your images](#preprocess-your-images)
+      * [Generate your connectomes](#generete-your-connectomes)
+      * [Analyze your connectomes](#analyze-your-connectome)
 
 ## How to cite?
 
@@ -32,9 +30,9 @@ In this section we provide istruction on how to build your dataset. All the Exce
 Before dowloading the images we suggest to:
    * filter the patients through the advance search tool and select: ADNI3 as cohort, "Prisma" and "Prisma fit" as scanner models.
    * filter the patients through the "Mayo(Jack Lab) - ADNI 3 MRI QC" file, selecting only the patients the have the T1w, DWI (multishell) and field map which passed the quality check.
-   * filter the patients through "Diagnosis", using the "Diagnosti summary" file and selecting the subjects classified as control (1) at the time of the visit.
+   * filter the patients through "Diagnosis", using the "Diagnostic summary" file and selecting the subjects classified as control (1) at the time of the visit.
 
-Once you have all the possible subjects we suggest to build an excel file similar dataset.xlsx. <br>
+Once you have all the possible subjects we suggest to build an excel file similar to dataset.xlsx. <br>
 In order to fill it you can use the Excel_manager.py script and the following excel files: MRI3META, PTDEMOG, DXSUM, UCBERKELEY_AMY,MMSE, MOCA,UCD_WMH. <br>
 Based on the resulting Excel file, only one visit per patient should be selected, and only visits with WMH values available. <br>
 To reduce the dataset to 50 patients, one can use the script patients_selection.py that aims to balance the gender of the patients and select those with the most uniform distribution of WMHB values.<br>
@@ -79,12 +77,14 @@ One should have:
    │  ├─ MIITRA_T1_1mm_brain.nii.gz
    │  ├─ MIITRA_mask.nii.gz
    │  ├─ MIITRA_gm.nii.gz
+   |  ├─ MIITRA_csf.nii.gz
    │  └─ MIITRA_wm.nii.gz
    └─ MNI152NLin2009cAsym/          
       ├─ MNI152NLin2009cAsym_T1_1mm.nii.gz
       ├─ MNI152NLin2009cAsym_T1_1mm_brain.nii.gz
       ├─ MNI152NLin2009cAsym_mask.nii.gz
       ├─ MNI152NLin2009cAsym_gm.nii.gz
+      ├─ MNI152NLin2009cAsym_csf.nii.gz
       └─ MNI152NLin2009cAsym_wm.nii.gz
 ```
  * one folder containing the parcellation
@@ -100,14 +100,12 @@ One should have:
 
 To run the preprocessing use the pre_processing_pipeline_ADNI.sh script (be sure to have the metadata_handler_dwi.py and flip_bvec.py script in tha same folder).
 
-
 ### Generete your connectomes 
-To run the preprocessing use the tractography_analysis_ADNI.sh script.
+To generate the connectomes use the tractography_analysis_ADNI.sh script.
 
-
-### Analyze you connectome
+### Analyze your connectome
 To compute the global and nodal connectome metrics use the extract_connectome_metrics.py script and the environment_preprocessing_and_metrics.yaml environment. <br>
-To reproduce the analysis, figure and tables use the results_plot.ipynb script and the analysis.yaml environment.
+To reproduce the analysis, figure and tables use the results_plot.ipynb script and the environment_analysis.yaml environment.
 
 
 
