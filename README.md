@@ -32,7 +32,7 @@ Before dowloading the images we suggest to:
    * filter the patients through the "Mayo(Jack Lab) - ADNI 3 MRI QC" file, selecting only the patients the have the T1w, DWI (multishell) and field map which passed the quality check.
    * filter the patients through "Diagnosis", using the "Diagnostic summary" file and selecting the subjects classified as control (1) at the time of the visit.
 
-Once you have all the possible subjects we suggest to build an excel file similar to [dataset.xlsx](data\dataset.xlsx). <br>
+Once you have all the possible subjects we suggest to build an excel file similar to [dataset.xlsx](data/dataset.xlsx). <br>
 In order to fill it you can use the Excel_manager.py script and the following excel files: MRI3META, PTDEMOG, DXSUM, UCBERKELEY_AMY,MMSE, MOCA,UCD_WMH. <br>
 Based on the resulting Excel file, only one visit per patient should be selected, and only visits with WMH values available. <br>
 To reduce the dataset to 50 patients, one can use the script [patients_selection.py](src\Building_your_dataset\patients_selection.py) that aims to balance the gender of the patients and select those with the most uniform distribution of WMHB values.<br>
