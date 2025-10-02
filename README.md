@@ -99,7 +99,7 @@ One should have:
 
 To run the preprocessing use the [pre_processing_pipeline_ADNI.sh](src/Preprocess_your_images/pre_processing_pipeline_ADNI.sh) script (be sure to have the [metadata_handler_dwi.py](src/Preprocess_your_images/metadata_handler_dwi.py) and [flip_bvec.py](src/Preprocess_your_images/flip_bvec.py) script in tha same folder).
 
-### Generete your connectomes 
+### Generate your connectomes 
 To generate the connectomes use the [tractography_analysis_ADNI.sh](src/Generate_your_connectomes/tractography_analysis_ADNI.sh) script.
 
 ### Analyze your connectome
