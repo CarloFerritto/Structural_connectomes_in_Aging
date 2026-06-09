@@ -15,7 +15,7 @@ We held tractography and parcellation constant while varying two upstream factor
 
 ## How to cite?
 
-See [CITATION](CITATION).
+See the pre-print on [HAL website](https://hal.science/hal-05446129).
 
 # Contents overview
 In this repository you can find instructions and scripts to reproduce our results. <br>
